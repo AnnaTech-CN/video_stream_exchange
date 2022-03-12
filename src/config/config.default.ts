@@ -1,5 +1,5 @@
 import { MidwayConfig, MidwayAppInfo } from '@midwayjs/core';
-import { IncomingMessage } from 'http';
+// import { IncomingMessage } from 'http';
 
 export default (appInfo: MidwayAppInfo) => {
   return {
@@ -18,14 +18,29 @@ export default (appInfo: MidwayAppInfo) => {
       {
         origin: '/lapi',
         options: {
-          router: function (req: IncomingMessage) {
+          router: function (req) {
             const [, ...params] = req.url?.slice(1).split('/');
             const [proxyUrl] = params;
             const realUrl = decodeURIComponent(proxyUrl);
+            delete req.headers.origin;
+            delete req.headers.referer;
+
+            req.url = req.headers.realpath;
+
             return `http://${realUrl}`;
           },
+          changeOrigin: true,
         },
       },
     ],
-  } as MidwayConfig;
+    security: {
+      domainWhiteList: ['*'],
+    },
+    cors: {
+      exposeHeaders: ['www-authenticate'],
+      allowHeaders: ['*'],
+    },
+  } as MidwayConfig & {
+    cors: any;
+  };
 };

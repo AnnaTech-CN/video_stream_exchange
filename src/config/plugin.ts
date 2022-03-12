@@ -5,4 +5,8 @@ export default {
     enable: true,
     package: 'egg-http-proxy-plus',
   },
+  cors: {
+    enable: true,
+    package: 'egg-cors',
+  },
 } as EggPlugin;
