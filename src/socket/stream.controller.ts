@@ -69,8 +69,8 @@ export class HelloSocketController {
         console.log('timeout');
         socket.close();
       })
-      .flvmeta()
-      .format('flv')
+      .outputOptions('-movflags frag_keyframe+empty_moov')
+      .fpsOutput(25)
       .outputFormat('flv');
 
     try {
