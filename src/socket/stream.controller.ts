@@ -10,7 +10,7 @@ import * as http from 'http';
 import * as qs from 'query-string';
 // import { createWebSocketStream } from 'ws';
 
-import { path as ffmpegPath } from '@ffmpeg-installer/ffmpeg';
+// import { path as ffmpegPath } from '@ffmpeg-installer/ffmpeg';
 import * as ffmpeg from 'fluent-ffmpeg';
 import path = require('path');
 
