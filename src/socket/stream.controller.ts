@@ -21,6 +21,9 @@ export class HelloSocketController {
 
   @OnWSConnection()
   async onConnectionMethod(socket: Context, request: http.IncomingMessage) {
+    this.ctx.onerror = event => {
+      console.log('ws error: ', event.message);
+    };
     console.log(`namespace / got a connection ${this.ctx.readyState}`);
     const query = qs.parseUrl(request.url).query;
     if (query.url == null) {
