@@ -62,7 +62,7 @@ export class HelloSocketController {
         console.log('Stream codecData.');
       })
       .on('error', err => {
-        console.log('An error occured: ', err.message);
+        console.log('An error occured: ', err);
         socket.close();
       })
       .on('end', () => {
