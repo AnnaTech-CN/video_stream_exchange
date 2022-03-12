@@ -51,8 +51,8 @@ export class HelloSocketController {
       },
     })
       .addInputOption('-timeout', '10')
-      .on('start', () => {
-        console.log('Stream Start.');
+      .on('start', commandLine => {
+        console.log('Stream Start With' + commandLine);
       })
       .on('codecData', () => {
         console.log('Stream codecData.');
