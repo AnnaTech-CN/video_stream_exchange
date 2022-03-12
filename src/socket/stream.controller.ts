@@ -69,6 +69,8 @@ export class HelloSocketController {
         console.log('timeout');
         socket.close();
       })
+      .flvmeta()
+      .format('flv')
       .outputFormat('flv');
 
     try {
