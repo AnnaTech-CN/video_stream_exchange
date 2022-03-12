@@ -12,8 +12,6 @@ import { createWebSocketStream } from 'ws';
 
 import { path as ffmpegPath } from '@ffmpeg-installer/ffmpeg';
 import * as ffmpeg from 'fluent-ffmpeg';
-import { createReadStream } from 'fs';
-import path = require('path');
 
 @WSController()
 export class HelloSocketController {
