@@ -38,7 +38,7 @@ export class HelloSocketController {
     // 传入连接的ws客户端 实例化一个流
 
     // 通过ffmpeg命令 对实时流进行格式转换 输出flv格式
-    ffmpeg.setFfmpegPath(ffmpegPath);
+    // ffmpeg.setFfmpegPath(ffmpegPath);
     this.ffmpegCommand = ffmpeg(url as string, {
       logger: {
         debug: debug => {
