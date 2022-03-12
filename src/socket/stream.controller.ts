@@ -13,6 +13,7 @@ import { createWebSocketStream } from 'ws';
 import { path as ffmpegPath } from '@ffmpeg-installer/ffmpeg';
 import * as ffmpeg from 'fluent-ffmpeg';
 import { createReadStream } from 'fs';
+import path = require('path');
 
 @WSController()
 export class HelloSocketController {
@@ -74,13 +75,13 @@ export class HelloSocketController {
         console.log('timeout');
         socket.close();
       })
-      .outputOptions('-movflags frag_keyframe+empty_moov')
+      //   .outputOptions('-movflags frag_keyframe+empty_moov')
       .fpsOutput(25)
       .outputFormat('flv');
 
     try {
       // 执行命令 传输到实例流中返回给客户端
-      // this.ffmpegCommand.writeToStream(createWebSocketStream(this.ctx));
+      this.ffmpegCommand.stream(createWebSocketStream(this.ctx), { end: true });
     } catch (error) {
       console.log(error);
     }
@@ -89,9 +90,7 @@ export class HelloSocketController {
   @OnWSMessage('message')
   async onMessage(data) {
     console.log('message: ', data);
-    createReadStream(Buffer.from('xixixixi')).pipe(
-      createWebSocketStream(this.ctx)
-    );
+    return data;
   }
 
   @OnWSDisConnection()
