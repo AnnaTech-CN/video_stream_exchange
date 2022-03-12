@@ -9,11 +9,9 @@ import { Context } from '@midwayjs/ws';
 import * as http from 'http';
 import * as qs from 'query-string';
 // import { createWebSocketStream } from 'ws';
-import * as fs from 'fs';
 
 import { path as ffmpegPath } from '@ffmpeg-installer/ffmpeg';
 import * as ffmpeg from 'fluent-ffmpeg';
-import path = require('path');
 
 @WSController()
 export class HelloSocketController {
