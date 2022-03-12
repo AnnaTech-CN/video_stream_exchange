@@ -12,6 +12,7 @@ import * as qs from 'query-string';
 
 import { path as ffmpegPath } from '@ffmpeg-installer/ffmpeg';
 import * as ffmpeg from 'fluent-ffmpeg';
+import path = require('path');
 
 @WSController()
 export class HelloSocketController {
@@ -79,10 +80,7 @@ export class HelloSocketController {
 
     try {
       // 执行命令 传输到实例流中返回给客户端
-      this.ffmpegCommand.pipe().on('data', chunk => {
-        console.log('data: ', chunk);
-        // this.ctx.send(chunk);
-      });
+      this.ffmpegCommand.saveToFile(path.join(__dirname, './xxx.flv'));
     } catch (error) {
       console.log(error);
     }
