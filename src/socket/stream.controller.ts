@@ -3,6 +3,7 @@ import {
   OnWSConnection,
   Inject,
   OnWSDisConnection,
+  OnWSMessage,
 } from '@midwayjs/decorator';
 import { Context } from '@midwayjs/ws';
 import * as http from 'http';
@@ -11,6 +12,7 @@ import { createWebSocketStream } from 'ws';
 
 import { path as ffmpegPath } from '@ffmpeg-installer/ffmpeg';
 import * as ffmpeg from 'fluent-ffmpeg';
+import { createReadStream } from 'fs';
 
 @WSController()
 export class HelloSocketController {
@@ -78,11 +80,18 @@ export class HelloSocketController {
 
     try {
       // 执行命令 传输到实例流中返回给客户端
-
-      this.ffmpegCommand.writeToStream(createWebSocketStream(this.ctx));
+      // this.ffmpegCommand.writeToStream(createWebSocketStream(this.ctx));
     } catch (error) {
       console.log(error);
     }
+  }
+
+  @OnWSMessage('message')
+  async onMessage(data) {
+    console.log('message: ', data);
+    createReadStream(Buffer.from('xixixixi')).pipe(
+      createWebSocketStream(this.ctx)
+    );
   }
 
   @OnWSDisConnection()
