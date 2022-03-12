@@ -8,11 +8,11 @@ import {
 import { Context } from '@midwayjs/ws';
 import * as http from 'http';
 import * as qs from 'query-string';
-// import { createWebSocketStream } from 'ws';
+import { createWebSocketStream } from 'ws';
 
 // import { path as ffmpegPath } from '@ffmpeg-installer/ffmpeg';
 import * as ffmpeg from 'fluent-ffmpeg';
-import path = require('path');
+// import path = require('path');
 
 @WSController()
 export class HelloSocketController {
@@ -80,7 +80,7 @@ export class HelloSocketController {
 
     try {
       // 执行命令 传输到实例流中返回给客户端
-      this.ffmpegCommand.saveToFile(path.join(__dirname, './xxx.flv'));
+      this.ffmpegCommand.pipe(createWebSocketStream(this.ctx));
     } catch (error) {
       console.log(error);
     }
