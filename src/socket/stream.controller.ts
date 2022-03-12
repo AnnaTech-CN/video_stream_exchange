@@ -34,7 +34,22 @@ export class HelloSocketController {
 
     // 通过ffmpeg命令 对实时流进行格式转换 输出flv格式
     ffmpeg.setFfmpegPath(ffmpegPath);
-    this.ffmpegCommand = ffmpeg(url as string)
+    this.ffmpegCommand = ffmpeg(url as string, {
+      logger: {
+        debug: debug => {
+          console.log('debug: ', debug);
+        },
+        info: info => {
+          console.log('info: ', info);
+        },
+        warn: warn => {
+          console.log('warn: ', warn);
+        },
+        error: error => {
+          console.log('error: ', error);
+        },
+      },
+    })
       .addInputOption('-timeout', '10')
       .on('start', () => {
         console.log('Stream Start.');
