@@ -74,7 +74,7 @@ export class HelloSocketController {
     try {
       // 执行命令 传输到实例流中返回给客户端
 
-      this.ffmpegCommand.pipe(createWebSocketStream(this.ctx));
+      this.ffmpegCommand.writeToStream(createWebSocketStream(this.ctx));
     } catch (error) {
       console.log(error);
     }
