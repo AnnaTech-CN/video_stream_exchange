@@ -80,7 +80,8 @@ export class HelloSocketController {
     try {
       // 执行命令 传输到实例流中返回给客户端
       this.ffmpegCommand.pipe().on('data', chunk => {
-        this.ctx.send(chunk);
+        console.log('data: ', chunk);
+        // this.ctx.send(chunk);
       });
     } catch (error) {
       console.log(error);
