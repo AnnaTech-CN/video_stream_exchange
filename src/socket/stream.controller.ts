@@ -77,7 +77,7 @@ export class HelloSocketController {
       //   .outputOptions('-movflags frag_keyframe+empty_moov')
 
       .outputFormat('flv')
-      .videoCodec('copy')
+      .videoCodec('libx264')
       .noAudio();
 
     try {
