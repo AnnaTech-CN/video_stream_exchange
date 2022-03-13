@@ -76,7 +76,9 @@ export class HelloSocketController {
       })
       //   .outputOptions('-movflags frag_keyframe+empty_moov')
 
-      .outputFormat('flv');
+      .outputFormat('flv')
+      .videoCodec('copy')
+      .noAudio();
 
     try {
       // 执行命令 传输到实例流中返回给客户端
