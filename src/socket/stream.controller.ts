@@ -55,7 +55,7 @@ export class HelloSocketController {
         },
       },
     })
-      .addInputOption('-timeout', '10')
+      // .addInputOption('-timeout', '10')
       .on('start', commandLine => {
         console.log('Stream Start With' + commandLine);
       })
@@ -75,7 +75,7 @@ export class HelloSocketController {
         socket.close();
       })
       //   .outputOptions('-movflags frag_keyframe+empty_moov')
-      .fpsOutput(25)
+
       .outputFormat('flv');
 
     try {
