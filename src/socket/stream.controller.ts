@@ -97,6 +97,7 @@ export class HelloSocketController {
   @OnWSDisConnection()
   async onClose(data) {
     console.log('data: ', data);
+
     this.ffmpegCommand.kill('SIGKILL');
   }
 }
